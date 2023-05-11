@@ -76,7 +76,8 @@ The start date will always be today if it is not specified.
 ./goldman-go g -e 2023-04-30
 
 # Generate schedule options starting from 2023-05-08 and ending to 2023-04-30
-./goldman-go g -s 2023-05-08 -e 2023-05-12
+# Generate schedule options in three weeks
+./goldman-go -w 3 g
 
 # Generate schedule options in eight days
 ./goldman-go g -d 8
