@@ -9,14 +9,14 @@ type DateRange struct {
 	End   time.Time
 }
 
-func NewDateRange(s string, e string, n int) (DateRange, error) {
+func NewDateRange(s string, e string, d int, w int) (DateRange, error) {
 	var (
 		start time.Time
 		end   time.Time
 		err   error
 	)
 
-	if s == "" || (e == "" && n == 0) {
+	if s == "" || (e == "" && d == 0 && w == 0) {
 		return DateRange{}, ErrInvalidArgument
 	}
 
@@ -27,9 +27,13 @@ func NewDateRange(s string, e string, n int) (DateRange, error) {
 
 	if e != "" {
 		end, err = time.Parse(time.DateOnly, e)
-	} else if n > 0 {
+	} else if w > 0 {
+		n := w*7 - 1
 		end = start.AddDate(0, 0, n)
+	} else if d > 0 {
+		end = start.AddDate(0, 0, d)
 	}
+
 	if err != nil {
 		return DateRange{}, ErrInvalidDateFormat
 	}

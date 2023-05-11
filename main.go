@@ -19,6 +19,7 @@ func main() {
 		start    string
 		end      string
 		day      int
+		week     int
 	)
 
 	app := &cli.App{
@@ -61,6 +62,13 @@ func main() {
 				Usage:       "Set day interval from start date from `INTEGER`",
 				Destination: &day,
 			},
+			&cli.IntFlag{
+				Name:        "week",
+				Aliases:     []string{"w"},
+				Value:       0,
+				Usage:       "Set day interval from start date from `INTEGER`",
+				Destination: &week,
+			},
 		},
 		Commands: []*cli.Command{
 			{
@@ -68,7 +76,7 @@ func main() {
 				Aliases: []string{"g"},
 				Usage:   "Generate list of schedule options",
 				Action: func(c *cli.Context) error {
-					drg, err := NewDateRange(start, end, day)
+					drg, err := NewDateRange(start, end, day, week)
 					if err != nil {
 						return err
 					}
