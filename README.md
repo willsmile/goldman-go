@@ -67,26 +67,28 @@ The start date will always be today if it is not specified.
 
 ```sh
 # Load configuration from the specified path
-./goldman-go generate -c hogehoge/config.yml
+./goldman-go -c hogehoge/config.yml generate
 
 # Generate schedule options in a week（g is short for `generate`）
 ./goldman-go g
 
 # Generate schedule options starting from today (assume 2023-04-25) and ending to 2023-04-30
-./goldman-go g -e 2023-04-30
+./goldman-go -e 2023-04-30 g
 
 # Generate schedule options starting from 2023-05-08 and ending to 2023-04-30
+./goldman-go -s 2023-05-08 -e 2023-05-12 g
+
 # Generate schedule options in three weeks
 ./goldman-go -w 3 g
 
 # Generate schedule options in eight days
-./goldman-go g -d 8
+./goldman-go -d 8 g
 ```
 
 The example of generated schedule options is as follows.
 
 ```sh
-❯ ./goldman-go g -d 5
+❯ ./goldman-go -d 5 g
 2023/04/25(Tue) 12:00~13:00
 2023/04/26(Wed) 12:00~13:00
 2023/04/26(Wed) 16:00~17:00
