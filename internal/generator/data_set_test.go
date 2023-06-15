@@ -1,9 +1,11 @@
-package main
+package generator
 
 import (
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/willsmile/goldman-go/internal/date"
 )
 
 func TestGenerate(t *testing.T) {
@@ -14,7 +16,7 @@ func TestGenerate(t *testing.T) {
 	m1, _ := time.Parse(time.DateOnly, "2023-05-01")
 	m2, _ := time.Parse(time.DateOnly, "2023-05-02")
 	m3, _ := time.Parse(time.DateOnly, "2023-05-03")
-	drg := DateRange{
+	drg := date.DateRange{
 		Start: m1,
 		End:   m3,
 	}
@@ -35,7 +37,7 @@ func TestGenerate_ByEmptyDataSet(t *testing.T) {
 	ds := DataSet{}
 	m1, _ := time.Parse(time.DateOnly, "2023-05-01")
 	m3, _ := time.Parse(time.DateOnly, "2023-05-03")
-	drg := DateRange{
+	drg := date.DateRange{
 		Start: m1,
 		End:   m3,
 	}

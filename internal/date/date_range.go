@@ -1,7 +1,17 @@
-package main
+package date
 
 import (
+	"errors"
 	"time"
+)
+
+var (
+	// ErrInvalidArgument is returned when the argument is invalid
+	ErrInvalidArgument = errors.New("the argument is invalid")
+	// ErrInvalidDateFormat is returned when the format of date argument is invalid
+	ErrInvalidDateFormat = errors.New("the format of date argument is invalid")
+	// ErrInvalidDateRange is returned when the range of date argument is invalid
+	ErrInvalidDateRange = errors.New("the range of date argument is invalid")
 )
 
 type DateRange struct {

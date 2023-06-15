@@ -1,10 +1,12 @@
-package main
+package cli
 
 import (
 	"fmt"
 	"time"
 
 	"github.com/urfave/cli/v2"
+	"github.com/willsmile/goldman-go/internal/config"
+	"github.com/willsmile/goldman-go/internal/date"
 )
 
 // version of goldman-go
@@ -81,12 +83,12 @@ func generate(c *cli.Context) error {
 	day := c.Int("day")
 	week := c.Int("week")
 
-	drg, err := NewDateRange(start, end, day, week)
+	drg, err := date.NewDateRange(start, end, day, week)
 	if err != nil {
 		return err
 	}
 
-	cfg, err := LoadConfig(path)
+	cfg, err := config.LoadConfig(path)
 	if err != nil {
 		return err
 	}

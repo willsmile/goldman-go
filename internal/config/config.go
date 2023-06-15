@@ -1,15 +1,29 @@
-package main
+package config
 
 import (
 	"fmt"
 	"os"
 
+	"github.com/willsmile/goldman-go/internal/generator"
 	"gopkg.in/yaml.v3"
 )
 
+type LoadConfigError struct {
+	msg string
+	err error
+}
+
+func (e *LoadConfigError) Error() string {
+	return fmt.Sprintf("cannot load config file: %s (%s)", e.msg, e.err.Error())
+}
+
+func (e *LoadConfigError) Unwrap() error {
+	return e.err
+}
+
 type Config struct {
-	UserDefinedData   DataSet `yaml:"data"`
-	UserDefinedFormat Format  `yaml:"format"`
+	UserDefinedData   generator.DataSet `yaml:"data"`
+	UserDefinedFormat generator.Format  `yaml:"format"`
 }
 
 func LoadConfig(configFilePath string) (*Config, error) {
