@@ -10,7 +10,7 @@ import (
 )
 
 // version of goldman-go
-const version = "0.1.0"
+const version = "0.2.0"
 
 func New() *cli.App {
 	app := &cli.App{
