@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"errors"
@@ -19,8 +19,8 @@ func TestLoadConfig_NotExistingPath(t *testing.T) {
 }
 
 func TestLoadConfig_ValidPath(t *testing.T) {
-	_, err := LoadConfig("./testdata/config.yml")
+	_, err := LoadConfig("../../testdata/config.yml")
 	if err != nil {
-		t.Fatalf("LoadConfig(\"./testdata/config.yml\"), expected none error, got %s", err)
+		t.Fatalf("LoadConfig(\"../../testdata/config.yml\"), expected none error, got %s", err)
 	}
 }

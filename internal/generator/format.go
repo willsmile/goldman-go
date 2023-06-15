@@ -1,4 +1,4 @@
-package main
+package generator
 
 type Format struct {
 	Date string            `yaml:"date"`

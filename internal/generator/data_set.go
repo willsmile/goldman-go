@@ -1,16 +1,18 @@
-package main
+package generator
 
 import (
 	"sort"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/willsmile/goldman-go/internal/date"
 )
 
 type DataSet map[string]Data
 type Data []string
 
-func (ds DataSet) Generate(drg DateRange) []Schedule {
+func (ds DataSet) Generate(drg date.DateRange) []Schedule {
 	var result []Schedule
 
 	if len(ds) == 0 {
