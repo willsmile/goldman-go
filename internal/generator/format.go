@@ -1,8 +1,23 @@
 package generator
 
+const (
+	LabelDate = "%{date}"
+	LabelTime = "%{time}"
+	LabelWday = "%{wday}"
+)
+
 type Format struct {
-	Date string            `yaml:"date"`
-	Wday map[string]string `yaml:"wday"`
+	Schedule string            `yaml:"schedule"`
+	Date     string            `yaml:"date"`
+	Wday     map[string]string `yaml:"wday"`
+}
+
+func (f Format) ScheduleFormat() string {
+	if f.Schedule != "" {
+		return f.Schedule
+	} else {
+		return defaultFormat().Schedule
+	}
 }
 
 func (f Format) DateLayout() string {
@@ -22,6 +37,7 @@ func (f Format) WdayAlias() map[string]string {
 }
 
 func defaultFormat() *Format {
+	schedule := "%{date}(%{wday}) %{time}"
 	date := "2006-01-02"
 	wday := map[string]string{
 		"Monday":    "Mon",
@@ -32,5 +48,5 @@ func defaultFormat() *Format {
 		"Saturday":  "Sat",
 		"Sunday":    "Sun",
 	}
-	return &Format{Date: date, Wday: wday}
+	return &Format{Schedule: schedule, Date: date, Wday: wday}
 }

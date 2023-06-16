@@ -1,7 +1,7 @@
 package generator
 
 import (
-	"fmt"
+	"strings"
 	"time"
 )
 
@@ -13,7 +13,13 @@ type Schedule struct {
 func (s Schedule) Format(f Format) string {
 	layout := f.DateLayout()
 	alias := f.WdayAlias()
-	wday := s.Date.Weekday().String()
+	dateValue := s.Date.Format(layout)
+	wdayValue := alias[s.Date.Weekday().String()]
+	timeValue := s.Option
 
-	return fmt.Sprintf("%s(%s) %s", s.Date.Format(layout), alias[wday], s.Option)
+	dateReplaced := strings.Replace(f.ScheduleFormat(), LabelDate, dateValue, 1)
+	timeReplaced := strings.Replace(dateReplaced, LabelTime, timeValue, 1)
+	wdayReplaced := strings.Replace(timeReplaced, LabelWday, wdayValue, 1)
+
+	return wdayReplaced
 }

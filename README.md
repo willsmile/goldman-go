@@ -47,10 +47,13 @@ data:
     - "16:00~17:00"
 ```
 
-You can customize the format to display each schedule option by setting them up in the configuration file. If it is not customized, the tool uses the default one.
+You can customize the format to display each schedule option by setting them up in the configuration file.
+For example, if the format of schedule is set as `%{date}(%{wday}) %{time}`, the schedule options will be outputted as `2023/04/25(Tue) 12:00~13:00`. 
+If it is not customized, the tool uses the default one.
 
 ```yml:config.yml
 format:
+  schedule: "%{date}(%{wday}) %{time}"
   date: "2006-01-02"
   wday:
     Monday: "月"
