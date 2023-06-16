@@ -12,6 +12,7 @@ data:
     - "18:00~19:00"
 
 format:
+  schedule: "%{date}(%{wday}) %{time}"
   date: "2006-01-02"
   wday:
     Monday: "月"
