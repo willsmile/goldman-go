@@ -1,5 +1,7 @@
 package generator
 
+import "strings"
+
 const (
 	LabelDate = "%{date}"
 	LabelTime = "%{time}"
@@ -34,6 +36,17 @@ func (f Format) WdayAlias() map[string]string {
 	} else {
 		return defaultFormat().Wday
 	}
+}
+
+func NewReplacer(s Schedule, f Format) *strings.Replacer {
+	layout := f.DateLayout()
+	alias := f.WdayAlias()
+	dateValue := s.Date.Format(layout)
+	wdayValue := alias[s.Date.Weekday().String()]
+	timeValue := s.Option
+	oldnew := []string{LabelDate, dateValue, LabelTime, timeValue, LabelWday, wdayValue}
+
+	return strings.NewReplacer(oldnew...)
 }
 
 func defaultFormat() *Format {
